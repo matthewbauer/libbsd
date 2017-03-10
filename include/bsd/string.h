@@ -37,6 +37,12 @@
 #include <sys/types.h>
 
 __BEGIN_DECLS
+#if defined(darwin) || defined(__APPLE__) || defined(MACOSX)
+size_t bsd_strlcpy(char *dst, const char *src, size_t siz);
+size_t bsd_strlcat(char *dst, const char *src, size_t siz);
+char *bsd_strnstr(const char *str, const char *find, size_t str_len);
+void bsd_strmode(mode_t mode, char *str);
+#else
 size_t strlcpy(char *dst, const char *src, size_t siz);
 size_t strlcat(char *dst, const char *src, size_t siz);
 char *strnstr(const char *str, const char *find, size_t str_len);
@@ -44,6 +50,7 @@ void strmode(mode_t mode, char *str);
 
 #if defined(_GNU_SOURCE) && defined(__GLIBC__) && !__GLIBC_PREREQ(2, 25)
 void explicit_bzero(void *buf, size_t len);
+#endif
 #endif
 __END_DECLS
 

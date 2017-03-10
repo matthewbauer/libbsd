@@ -25,7 +25,11 @@
  * Returns strlen(src); if retval >= dsize, truncation occurred.
  */
 size_t
+#if defined(darwin) || defined(__APPLE__) || defined(MACOSX)
+bsd_strlcpy(char *dst, const char *src, size_t dsize)
+#else
 strlcpy(char *dst, const char *src, size_t dsize)
+#endif
 {
 	const char *osrc = src;
 	size_t nleft = dsize;

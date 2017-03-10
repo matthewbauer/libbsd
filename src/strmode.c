@@ -33,7 +33,11 @@
 #include <string.h>
 
 void
+#if defined(darwin) || defined(__APPLE__) || defined(MACOSX)
+bsd_strmode(mode_t mode, char *p)
+#else
 strmode(mode_t mode, char *p)
+#endif
 {
 	 /* print type */
 	switch (mode & S_IFMT) {

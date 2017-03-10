@@ -27,7 +27,11 @@
  * If retval >= dsize, truncation occurred.
  */
 size_t
+#if defined(darwin) || defined(__APPLE__) || defined(MACOSX)
+bsd_strlcat(char *dst, const char *src, size_t dsize)
+#else
 strlcat(char *dst, const char *src, size_t dsize)
+#endif
 {
 	const char *odst = dst;
 	const char *osrc = src;

@@ -67,8 +67,10 @@ int sradixsort(const unsigned char **base, int nmemb,
                const unsigned char *table, unsigned endbyte);
 
 void *reallocf(void *ptr, size_t size);
-#if defined(_GNU_SOURCE) && defined(__GLIBC__) && !__GLIBC_PREREQ(2, 26)
+#if defined(_GNU_SOURCE) && defined(__GLIBC__) && defined(__GLIBC_PREREQ)
+#if !__GLIBC_PREREQ(2, 26)
 void *reallocarray(void *ptr, size_t nmemb, size_t size);
+#endif
 #endif
 
 long long strtonum(const char *nptr, long long minval, long long maxval,

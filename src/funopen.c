@@ -143,6 +143,7 @@ funopen(const void *cookie,
  * they will not add the needed support to implement it. Just ignore this
  * interface there, as it has never been provided anyway.
  */
+#elif defined(darwin) || defined(__APPLE__) || defined(MACOSX)
 #else
 #error "Function funopen() needs to be ported or disabled."
 #endif

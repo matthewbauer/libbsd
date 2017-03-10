@@ -25,7 +25,13 @@
  */
 
 #include <sys/cdefs.h>
+__FBSDID("$FreeBSD$");
+
+#if defined(darwin) || defined(__APPLE__) || defined(MACOSX)
+#include <machine/endian.h>
+#else
 #include <sys/endian.h>
+#endif
 #include <sys/types.h>
 
 #include <string.h>
